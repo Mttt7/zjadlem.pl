@@ -96,6 +96,13 @@ public class AuthController {
     }
 
 
+    @PostMapping("/validate")
+    public ResponseEntity<Map<String,Boolean>> validateToken(@RequestBody String token){
+        boolean isValid =  this.jwtGenerator.validateToken(token);
+        Map<String,Boolean> res = new HashMap<>();
+        res.put("valid",isValid);
+        return ResponseEntity.ok().body(res);
+    }
 
     @GetMapping("/email/{email}")
     public ResponseEntity<Map<String,Boolean>> checkEmailAvailability(@PathVariable String email){
