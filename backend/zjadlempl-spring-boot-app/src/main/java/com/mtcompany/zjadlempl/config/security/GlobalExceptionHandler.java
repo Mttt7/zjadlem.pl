@@ -3,6 +3,7 @@ package com.mtcompany.zjadlempl.config.security;
 import com.mtcompany.zjadlempl.exception.EmailNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,6 +28,7 @@ public class GlobalExceptionHandler {
         });
         return ResponseEntity.badRequest().body(errors);
     }
+
 
     @ExceptionHandler(EmailNotFound.class)
     public ResponseEntity<Object> handleEmailNotFoundException(EmailNotFound ex) {

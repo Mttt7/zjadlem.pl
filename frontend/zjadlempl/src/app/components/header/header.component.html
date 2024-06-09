@@ -1,0 +1,41 @@
+<div
+  class="w-full h-full bg-neutral shadow-lg flex items-center justify-between px-5"
+>
+  <div
+    class="text-primary text-3xl font-semibold btn bg-neutral outline-none border-none hover:bg-primary hover:text-white flex items-center justify-center gap-0"
+    routerLink="/home"
+  >
+    🍴Zjadlem<span class="font-thin">.pl</span>
+  </div>
+
+  <div
+    class="text-primary hover:underline cursor-pointer text-xl"
+    routerLink="/add-new-review"
+  >
+    dodaj
+  </div>
+
+  <div class="flex items-center justify-center gap-3 text-lg">
+    @if (userLoggedIn()){
+    <a
+      class="text-secondary cursor-pointer hover:underline flex items-center justify-center text-xl"
+      routerLink="/profile"
+    >
+      &#64;{{ username() }}
+    </a>
+    } @else{
+    <a
+      class="text-secondary cursor-pointer hover:underline"
+      routerLink="/login"
+    >
+      Zaloguj się
+    </a>
+    <a
+      class="text-secondary cursor-pointer hover:underline"
+      routerLink="/register"
+    >
+      Rejestracja
+    </a>
+    }
+  </div>
+</div>

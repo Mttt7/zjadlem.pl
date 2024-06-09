@@ -13,7 +13,6 @@ public class UserMapper {
                 .id(userEntity.getId())
                 .username(userEntity.getUsername())
                 .email(userEntity.getEmail())
-
                 .roles(userEntity.getRoles())
                 .build();
     }

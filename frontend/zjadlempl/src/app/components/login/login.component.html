@@ -1,0 +1,15 @@
+<div>
+  <input
+    type="text"
+    #emailField
+    [value]="email()"
+    (input)="email.set(emailField.value)"
+  />
+  <input
+    type="password"
+    #passwordField
+    [value]="password()"
+    (input)="password.set(passwordField.value)"
+  />
+  <button type="submit" (click)="login()">Log In</button>
+</div>
