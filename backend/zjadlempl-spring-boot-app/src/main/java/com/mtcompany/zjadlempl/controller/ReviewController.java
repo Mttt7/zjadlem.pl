@@ -31,6 +31,7 @@ public class ReviewController {
 
     @PostMapping("/")
     public ResponseEntity<Map<String,String>> createReview(@RequestBody  @Valid ReviewRequestDto reviewRequestDto){
+        System.out.println(reviewRequestDto);
         Map<String,String> res = reviewService.createReview(reviewRequestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(res);

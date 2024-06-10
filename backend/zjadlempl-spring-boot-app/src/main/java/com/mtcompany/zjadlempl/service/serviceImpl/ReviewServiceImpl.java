@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,6 +52,7 @@ public class ReviewServiceImpl implements ReviewService {
             UserEntity user = authService.getLoggedUser();
             Review review = reviewMapper.mapToReview(reviewRequestDto);
             review.setAuthorId(user.getId());
+            review.setCreatedAt(new Date());
             reviewRepository.save(review);
 
             Map<String, String> response = new HashMap<>();
