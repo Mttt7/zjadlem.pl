@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginPayload } from '../models/loginPayload';
 import { toast } from 'ngx-sonner';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +33,10 @@ export class AuthService {
   }
 
   public validateToken() {
-    //DODAC NA BACKENDZIE WALIDACJE TOKENA SPRAWDZIC CZY AKTUALNY ITD PPRAWNY
+    const token: string = sessionStorage.getItem('token') || '';
+    if (token === '') return of(false);
+
+    return this.http.post(`${this.BASE_URL}/auth/validate`, token);
   }
 
   public logout() {
@@ -42,11 +45,12 @@ export class AuthService {
     this.user.next(null);
   }
 
-  checkIfUserIsLoggedIn() {
+  checkIfCredentailsInStorage() {
     if (sessionStorage.getItem('token') && sessionStorage.getItem('user')) {
-      this.validateToken();
       this.user.next(JSON.parse(sessionStorage.getItem('user') || 'null'));
+      return of(true);
     }
+    return of(false);
   }
 
   public getLoggedInUser() {

@@ -20,9 +20,11 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@supabase/supabase-js": "^2.43.4",
     "daisyui": "^4.12.2",
     "ngx-sonner": "^1.0.0",
     "rxjs": "~7.8.0",
+    "uuidv4": "^6.2.13",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
