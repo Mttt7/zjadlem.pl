@@ -1,0 +1,24 @@
+<div
+  class="text-neutral w-[500px] h-[700px] bg-white rounded-sm flex flex-col items-center justify-start p-4 shadow-2xl"
+>
+  <div
+    class="text-xl italic font-semibold flex items-center justify-center w-full"
+  >
+    <div class="w-[33%] text-sm">
+      {{ review().createdAt.toString().slice(0, 10) }}
+    </div>
+    <div class="w-[33%] text-center">&#64;{{ review().authorUsername }}</div>
+  </div>
+  <div class="w-[300px] h-[300px] shadow-xl">
+    <img class="w-full h-full rounded-md" [src]="review().imageUrl" />
+  </div>
+  <app-rating></app-rating>
+  <div class="text-left text-lg text-primary">
+    {{ review().title }}
+    <span class="text-secondary italic">{{ review().city }}</span>
+  </div>
+  <div class="text-left text-lg">{{ review().comment }}</div>
+  <div class="mt-auto text-primary">
+    <app-actions></app-actions>
+  </div>
+</div>

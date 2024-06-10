@@ -1,1 +1,90 @@
-<p>add-new-review works!</p>
+<div>
+  <form
+    class="flex flex-col items-center justify-center gap-2"
+    [formGroup]="reviewForm"
+    (ngSubmit)="submitReview()"
+  >
+    <input
+      type="text"
+      placeholder="Place name"
+      class="input input-sm input-bordered max-w-xs w-[300px]"
+      formControlName="title"
+      [class.input-error]="
+        reviewForm.get('title')!.touched && reviewForm.get('title')!.invalid
+      "
+    />
+    <input
+      type="text"
+      placeholder="City"
+      class="input input-sm input-bordered max-w-xs w-[300px]"
+      formControlName="city"
+      [class.input-error]="
+        reviewForm.get('city')!.touched && reviewForm.get('city')!.invalid
+      "
+    />
+    <textarea
+      class="textarea textarea-bordered w-[300px]"
+      placeholder="Comment"
+      formControlName="comment"
+      [class.textarea-error]="
+        reviewForm.get('comment')!.touched && reviewForm.get('comment')!.invalid
+      "
+    ></textarea>
+    <input
+      type="number"
+      placeholder="Rating (1-10)"
+      class="input input-sm input-bordered max-w-xs w-[300px]"
+      min="1.0"
+      max="10.0"
+      step="0.1"
+      formControlName="rating"
+      #rating
+      [class.input-error]="
+        reviewForm.get('rating')!.touched && reviewForm.get('rating')!.invalid
+      "
+    />
+    <progress
+      class="progress progress-primary w-[300px]"
+      max="100"
+      min="1.0"
+      max="10.0"
+      step="0.1"
+      [value]="rating.value"
+    ></progress>
+    <input
+      type="text"
+      placeholder="Google Maps URL"
+      class="input input-sm input-bordered max-w-xs w-[300px]"
+    />
+    <input
+      type="file"
+      class="file-input w-[300px]"
+      (change)="uploadImage($event)"
+    />
+    @if(!loading()){<button class="btn btn-secondary">Dodaj</button>}
+    <app-loader [show]="loading()" class=""></app-loader>
+  </form>
+
+  <div class="flex flex-col gap-2 items-center justify-center">
+    @if(reviewForm.get('title')!.touched && reviewForm.get('title')!.invalid){
+    <div class="text-red-500">
+      Tytuł jest wymagany i musi mieć co najmniej 3 znaki.
+    </div>
+    } @if(reviewForm.get('city')!.touched && reviewForm.get('city')!.invalid){
+    <div class="text-red-500">
+      Nazwa miasta jest wymagana i musi mieć co najmniej 3 znaki.
+    </div>
+    } @if(reviewForm.get('comment')!.touched &&
+    reviewForm.get('comment')!.invalid){
+    <div class="text-red-500">
+      Komentarz jest wymagany i musi mieć co najmniej 30 znaków.
+    </div>
+    } @if(reviewForm.get('rating')!.touched &&
+    reviewForm.get('rating')!.invalid){
+    <div class="text-red-500">
+      Ocena musi być w przedziale od 1 do 10 i może zawierać tylko jedną cyfrę
+      po przecinku.
+    </div>
+    }
+  </div>
+</div>
